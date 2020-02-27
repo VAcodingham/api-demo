@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <style>
+        img:hover {
+            cursor: pointer;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div id="pkmn"></div>
+    <script>
+        var i=1;
+        while(i < 152) {
+            $("#pkmn").append(`<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png" alt="pokemon #${i}" id="${i}" height="256px">`);
+            i++;
+        }
+        $(document).ready(function() {
+            $("img").click(function() {
+                var id = $(this).attr("id");
+                $.get(`https://pokeapi.co/api/v2/pokemon/${id}`, function(data) {
+                    console.log(data);
+                    alert(data.name);
+                }, "json");
+            });
+        });
+    </script>
+</body>
+</html>
